@@ -9,13 +9,15 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { CardDeckComponent } from './card-deck/card-deck.component';
 import { CardComponent } from './card-deck/card/card.component';
 import { ResultComponent } from './card-deck/result/result.component';
+import { CardListComponent } from './card-list/card-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CardDeckComponent,
     CardComponent,
-    ResultComponent
+    ResultComponent,
+    CardListComponent
   ],
   imports: [
     BrowserModule,

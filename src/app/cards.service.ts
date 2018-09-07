@@ -30,7 +30,7 @@ export class CardsService {
       correct: null
     },
     {
-      word: 'Carlos la ha llamado',
+      word: 'Carlos la ha llamado.',
       translated: 'Carlos hat sie angerufen.',
       imageUrl: '',
       opened: false,
