@@ -7,11 +7,15 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { CardDeckComponent } from './card-deck/card-deck.component';
+import { CardComponent } from './card-deck/card/card.component';
+import { ResultComponent } from './card-deck/result/result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CardDeckComponent
+    CardDeckComponent,
+    CardComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,11 @@
+<mat-card (click)="onFlip($event)">
+  <mat-card-header>
+      <mat-card-title>{{ card.opened ? card.translated : card.word }}</mat-card-title>
+    </mat-card-header>
+    <img matCardImage src="{{ card.imageUrl }}">
+
+    <mat-card-actions align="start">
+        <button mat-button color="accent" (click)="onWrong($event)">Wrong</button>
+        <button mat-button color="primary" (click)="onRight($event)">Right</button>
+    </mat-card-actions>
+</mat-card>

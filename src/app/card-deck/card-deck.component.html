@@ -1,0 +1,12 @@
+<div id="card-area">
+  <lw-card
+    [card]="currentCard"
+    (solve)="onSolve($event)"
+    *ngIf="cardsLeft()"></lw-card>
+
+  <lw-result
+    [cards]="cards"
+    (done)="onDone()"
+    (more)="onMore()"
+    *ngIf="!cardsLeft()"></lw-result>
+</div>
