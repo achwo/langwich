@@ -6,7 +6,6 @@ import { Card } from './card';
   providedIn: 'root'
 })
 export class CardsService {
-
   private readonly CARDS = [
     {
       word: 'la manzana',
@@ -85,4 +84,13 @@ export class CardsService {
   getCards(amount: number): Observable<Card[]> {
     return of(this.CARDS);
   }
+
+  addCard(word: string, translated: string): Observable<Card> {
+    console.log('CardsService.addCard', word, translated);
+    const newWord = new Card(word, translated, '', false, false);
+    this.CARDS.push(newWord);
+
+    return of(newWord);
+  }
+
 }

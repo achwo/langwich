@@ -1,6 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatButtonModule, MatCardModule, MatExpansionModule, MatListModule, MatTableModule, MatSortModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatExpansionModule,
+  MatListModule,
+  MatTableModule,
+  MatSortModule,
+  MatDividerModule,
+  MatInputModule,
+  MatFormFieldModule
+} from '@angular/material';
 
 const importsAndExports = [
   MatCardModule,
@@ -8,7 +18,10 @@ const importsAndExports = [
   MatExpansionModule,
   MatListModule,
   MatTableModule,
-  MatSortModule
+  MatSortModule,
+  MatDividerModule,
+  MatInputModule,
+  MatFormFieldModule
 ];
 
 @NgModule({

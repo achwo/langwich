@@ -10,6 +10,8 @@ import { CardDeckComponent } from './card-deck/card-deck.component';
 import { CardComponent } from './card-deck/card/card.component';
 import { ResultComponent } from './card-deck/result/result.component';
 import { CardListComponent } from './card-list/card-list.component';
+import { AddCardComponent } from './card-list/add-card/add-card.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,14 +19,16 @@ import { CardListComponent } from './card-list/card-list.component';
     CardDeckComponent,
     CardComponent,
     ResultComponent,
-    CardListComponent
+    CardListComponent,
+    AddCardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatModule,
-    LayoutModule
+    LayoutModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

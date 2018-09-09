@@ -1,0 +1,14 @@
+<mat-expansion-panel expanded="true">
+  <mat-expansion-panel-header>
+    <mat-panel-title>Add new words</mat-panel-title>
+  </mat-expansion-panel-header>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input formControlName="word" matInput placeholder="New word">
+    </mat-form-field>
+    <mat-form-field>
+      <input formControlName="translation" matInput placeholder="Translation">
+    </mat-form-field>
+    <button mat-button>Add</button>
+  </form>
+</mat-expansion-panel>
