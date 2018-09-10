@@ -1,3 +1,4 @@
+import { LocalStorageService } from './local-storage.service';
 import { Injectable } from '@angular/core';
 import { of, Observable } from 'rxjs';
 import { Card } from './card';
@@ -6,6 +7,9 @@ import { Card } from './card';
   providedIn: 'root'
 })
 export class CardsService {
+
+  private localCards: Card[];
+
   private readonly CARDS = [
     {
       word: 'la manzana',
@@ -79,18 +83,34 @@ export class CardsService {
     },
   ];
 
-  constructor() { }
+  constructor(private localStorageService: LocalStorageService) {
+    // TODO: detect availability of localStorageService
+
+    if (localStorageService.getItem('cards') === null) {
+      localStorageService.addItem('cards', this.CARDS);
+    }
+    this.localCards = localStorageService.getItem('cards');
+  }
 
   getCards(amount: number): Observable<Card[]> {
-    return of(this.CARDS);
+    return of(this.localCards);
   }
 
   addCard(word: string, translated: string): Observable<Card> {
     console.log('CardsService.addCard', word, translated);
     const newWord = new Card(word, translated, '', false, false);
-    this.CARDS.push(newWord);
+    this.localCards.push(newWord);
+    this.localStorageService.addItem('cards', this.localCards);
 
     return of(newWord);
+  }
+
+  deleteCard(card: Card): Observable<boolean> {
+    console.log('CardsService.deleteCard', card);
+    this.localCards = this.localCards.filter((c: Card) => card !== c);
+    this.localStorageService.addItem('cards', this.localCards);
+
+    return of(true);
   }
 
 }

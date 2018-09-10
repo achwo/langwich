@@ -1,4 +1,4 @@
-<lw-add-card></lw-add-card>
+<lw-add-card (add)="onNewCard($event)"></lw-add-card>
 <mat-divider></mat-divider>
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
@@ -10,6 +10,15 @@
   <ng-container matColumnDef="translated">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Translated </th>
     <td mat-cell *matCellDef="let card"> {{card.translated}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Edit </th>
+    <td mat-cell *matCellDef="let card">
+      <button mat-icon-button (click)="deleteCard(card)">
+        <mat-icon aria-label="Example icon-button with a heart icon">favorite</mat-icon>
+      </button>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

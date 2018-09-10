@@ -1,13 +1,19 @@
 import { CardsService } from './../../cards.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Card } from '../../card';
 
 @Component({
   selector: 'lw-add-card',
   templateUrl: './add-card.component.html',
   styleUrls: ['./add-card.component.scss']
 })
-export class AddCardComponent implements OnInit {
+export class AddCardComponent {
+
+  @ViewChild('wordField') wordField;
+
+  @Output()
+  add = new EventEmitter<Card>();
 
   profileForm = new FormGroup({
     word: new FormControl(''),
@@ -16,9 +22,6 @@ export class AddCardComponent implements OnInit {
 
   constructor(private cardsService: CardsService) { }
 
-  ngOnInit() {
-  }
-
   onSubmit() {
     this.addCard(this.profileForm.value.word, this.profileForm.value.translation);
   }
@@ -26,8 +29,11 @@ export class AddCardComponent implements OnInit {
   addCard(word: string, translated: string) {
     console.log('AddCard.addWord', word);
     if (word !== '' && translated !== '') {
-      this.cardsService.addCard(word, translated);
-
+      this.cardsService.addCard(word, translated).subscribe((card: Card) => {
+        this.add.emit(card);
+        this.profileForm.reset();
+        this.wordField.nativeElement.focus();
+      });
     }
   }
 }
