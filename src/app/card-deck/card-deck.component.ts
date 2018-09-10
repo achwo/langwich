@@ -1,6 +1,7 @@
 import { CardsService } from './../cards.service';
 import { Component, OnInit } from '@angular/core';
 import { Card } from '../card';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'lw-card-deck',
@@ -12,38 +13,33 @@ export class CardDeckComponent implements OnInit {
   cards: Card[];
   currentCardIdx = 0;
 
-  constructor(private cardsService: CardsService) { }
+  constructor(private cardsService: CardsService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.fetchCards();
-  }
-
-  fetchCards() {
-    console.log('CardDeck.fetchCards');
-    this.cardsService.getCards(5).subscribe((cards) => {
-      console.log('CardDeck.fetchCards result');
-      this.cards = cards;
+    this.route.data.subscribe((data: { cards: Card[] }) => {
+      this.cards = data.cards;
       this.currentCard = this.cards[0];
     });
   }
 
   onSolve(result: boolean) {
-    console.log('CardDeck.onSolve', result);
     this.currentCard.correct = result;
     this.nextCard();
   }
 
   onMore() {
-    console.log('CardDeck.onMore');
     event.stopPropagation();
 
-    this.fetchCards();
-    this.currentCardIdx = 0;
+    this.cardsService.getCards(5).subscribe((cards) => {
+      this.cards = cards;
+      this.currentCard = this.cards[0];
+      this.currentCardIdx = 0;
+    });
   }
 
   onDone() {
-    console.log('CardDeck.onDone');
     event.stopPropagation();
+    this.router.navigate(['/']);
   }
 
   cardsLeft() {

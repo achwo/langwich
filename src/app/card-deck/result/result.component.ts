@@ -1,20 +1,27 @@
 import { Card } from './../../card';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener } from '@angular/core';
 
 @Component({
   selector: 'lw-result',
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.scss']
 })
-export class ResultComponent implements OnInit {
+export class ResultComponent {
 
   @Input() cards: Card[];
   @Output() done = new EventEmitter();
   @Output() more = new EventEmitter();
 
-  constructor() { }
 
-  ngOnInit() {
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    if (event.key === '1') {
+      this.done.emit();
+    }
+
+    if (event.key === '2') {
+      this.more.emit();
+    }
   }
 
 }

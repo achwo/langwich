@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, HostListener } from '@angular/core';
 import { Card } from '../../card';
 import { EventEmitter } from '@angular/core';
 
@@ -20,21 +20,33 @@ export class CardComponent implements OnInit {
   }
 
   onFlip() {
-    console.log('Card.onFlip');
     this.card.opened = !this.card.opened;
   }
 
   onWrong(event: Event) {
-    console.log('Card.onWrong');
     event.stopPropagation();
     this.solve.emit(false);
   }
 
   onRight(event: Event) {
-    console.log('Card.onRight');
     event.stopPropagation();
     this.solve.emit(true);
   }
 
+  @HostListener('window:keyup', ['$event'])
+  keyEvent(event: KeyboardEvent) {
+    console.log(event);
+    if (event.key === 'w' || event.key === '1') {
+      this.onWrong(event);
+    }
+
+    if (event.key === 'r' || event.key === '2') {
+      this.onRight(event);
+    }
+
+    if (event.key === ' ') {
+      this.onFlip();
+    }
+  }
 
 }
