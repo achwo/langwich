@@ -1,6 +1,25 @@
 # Langwich
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+
+## Running
+
+1. create a .env-File like `example.env` in the project root.
+2. run `docker-compose up`
+3. Running:
+  - frontend on localhost:8000
+  - backend on localhost:5000
+
+### Rebuilding components
+
+`docker-compose up --build`
+
+### Running single components
+
+`docker-compose up db`
+`docker-compose up backend`
+`docker-compose up frontend`
+
+
 
 ## Development server
 
@@ -25,3 +44,4 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
